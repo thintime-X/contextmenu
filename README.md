@@ -1,5 +1,7 @@
 # contextmenu
 
+[![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/TheOneWithTheBraid/contextmenu/main?label=GitLab%20CI&logo=gitlab&style=flat-square)](https://gitlab.com/TheOneWithTheBraid/contextmenu) [![Pub Version](https://img.shields.io/pub/v/contextmenu?label=Published&logo=flutter&style=flat-square)](https://pub.dev/packages/contextmenu)
+
 Display a beautiful material context menu using pure Flutter.
 
 It works both on touch devices and on desktop devices.
