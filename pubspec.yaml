@@ -1,7 +1,9 @@
 name: contextmenu
 description: Display a material context menu using pure Flutter
-version: 0.0.1
-homepage:
+version: 1.0.0
+homepage: https://theonewiththebraid.gitlab.io/contextmenu/#/
+repository: https://gitlab.com/TheOneWithTheBraid/contextmenu.git
+issue_tracker: https://gitlab.com/TheOneWithTheBraid/contextmenu/issues
 
 environment:
   sdk: ">=2.0.0 <3.0.0"
