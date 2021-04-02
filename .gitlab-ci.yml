@@ -1,0 +1,37 @@
+image: cirrusci/flutter:beta
+
+stages:
+  - build
+  - deploy
+
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - xournalpp-web-*
+
+build:web:
+  stage: build
+  script:
+    - flutter config --enable-web
+    - cd example
+    - flutter pub get
+    - set +o pipefail
+    - flutter build web
+    - cd ..
+    - cp -r example/build/web xournalpp-web-$VERSION
+  artifacts:
+    paths:
+      - xournalpp-web-*
+
+pages:
+  stage: deploy
+  image: alpine:latest
+  script:
+    - mkdir public
+    - cp -r xournalpp-web-$VERSION/* public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
