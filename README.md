@@ -4,6 +4,8 @@ Display a beautiful material context menu using pure Flutter.
 
 It works both on touch devices and on desktop devices.
 
+***See a demo [here](https://theonewiththebraid.gitlab.io/contextmenu/)!***
+
 ## Features
 
 * modern, emphasizing animation according to material design guidelines
@@ -56,4 +58,4 @@ For the web, edit your `index.html` and add the following in the `<body>` tag:
 
 ## License
 
-This project is EUPL licensed. For further details, consult [LICENSE](LICENSE);
+This project is EUPL licensed. For further details, consult [LICENSE](LICENSE).

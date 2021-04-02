@@ -30,6 +30,7 @@ pages:
   script:
     - mkdir public
     - cp -r xournalpp-web-$VERSION/* public/
+    - sed -i "s/base\ href=\"/base\ href=\"\/contextmenu/g" public/index.html
   artifacts:
     paths:
       - public
