@@ -8,7 +8,7 @@ It works both on touch devices and on desktop devices.
 
 ***See a demo [here](https://theonewiththebraid.gitlab.io/contextmenu/)!***
 
-![Demo Screen Recording](example/demo.webp)
+[![Demo Screen Recording](https://gitlab.com/TheOneWithTheBraid/contextmenu/-/raw/main/example/demo.webp?inline=false)](https://gitlab.com/TheOneWithTheBraid/contextmenu/-/raw/main/example/demo.webp?inline=false)
 
 ## Features
 
@@ -19,6 +19,7 @@ It works both on touch devices and on desktop devices.
 ## Getting Started
 
 You can easily display a context menu using the following code:
+
 ```dart
 Widget build() {
   return ContextMenuArea(
@@ -45,19 +46,23 @@ Widget build() {
 ```
 
 A more complicated way manually triggering a context menu using `showContextMenu()` is:
+
 ```dart
 Widget build() {
   return GestureDetector(
-    onSecondaryTapDown: (details) => showContextMenu(
-        details.globalPosition, context, items, verticalPadding, width),
-    child: Text('Tap!'));
+      onSecondaryTapDown: (details) =>
+          showContextMenu(
+              details.globalPosition, context, items, verticalPadding, width),
+      child: Text('Tap!'));
 }
 ```
 
 ## Setup web
 
 For the web, edit your `index.html` and add the following in the `<body>` tag:
+
 ```html
+
 <body oncontextmenu="return false;">
 ```
 

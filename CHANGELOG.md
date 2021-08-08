@@ -1,3 +1,7 @@
+## 2.0.1
+
+* Fixed image link in READE
+
 ## 2.0.0
 
 * Fixed rendering issues in the corners
