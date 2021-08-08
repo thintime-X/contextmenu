@@ -7,15 +7,16 @@ import 'ContextMenu.dart';
 void showContextMenu(Offset offset, BuildContext context, List<Widget> children,
     verticalPadding, width) {
   showModal(
-      context: context,
-      configuration:
-          FadeScaleTransitionConfiguration(barrierColor: Colors.transparent),
-      builder: (context) => ContextMenu(
-            position: offset,
-            children: children,
-            verticalPadding: verticalPadding,
-            width: width,
-          ));
+    context: context,
+    configuration:
+        FadeScaleTransitionConfiguration(barrierColor: Colors.transparent),
+    builder: (context) => ContextMenu(
+      position: offset,
+      children: children,
+      verticalPadding: verticalPadding,
+      width: width,
+    ),
+  );
 }
 
 /// The [ContextMenuArea] is the way to use a [ContextMenu]
@@ -38,20 +39,32 @@ class ContextMenuArea extends StatelessWidget {
   /// The width for the [ContextMenu]. 320 by default according to Material Design specs.
   final double width;
 
-  const ContextMenuArea(
-      {Key key,
-      this.child,
-      this.items,
-      this.verticalPadding = 8,
-      this.width = 320})
-      : super(key: key);
+  const ContextMenuArea({
+    Key key,
+    this.child,
+    this.items,
+    this.verticalPadding = 8,
+    this.width = 320,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onSecondaryTapDown: (details) => showContextMenu(
-            details.globalPosition, context, items, verticalPadding, width),
-        onLongPressStart: (details) => showContextMenu(
-            details.globalPosition, context, items, verticalPadding, width),
-        child: child);
+      onSecondaryTapDown: (details) => showContextMenu(
+        details.globalPosition,
+        context,
+        items,
+        verticalPadding,
+        width,
+      ),
+      onLongPressStart: (details) => showContextMenu(
+        details.globalPosition,
+        context,
+        items,
+        verticalPadding,
+        width,
+      ),
+      child: child,
+    );
   }
 }

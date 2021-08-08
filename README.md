@@ -8,6 +8,8 @@ It works both on touch devices and on desktop devices.
 
 ***See a demo [here](https://theonewiththebraid.gitlab.io/contextmenu/)!***
 
+![Demo Screen Recording](example/demo.webp)
+
 ## Features
 
 * modern, emphasizing animation according to material design guidelines

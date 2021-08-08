@@ -1,3 +1,9 @@
+## 1.1.0
+
+* Fixed rendering issues in the corners
+* Added screen recording
+* Improved code style
+
 ## 1.0.1
 
 * Improved pub.dev listing

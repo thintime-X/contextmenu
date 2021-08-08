@@ -77,24 +77,31 @@ class _ContextMenuState extends State<ContextMenu> {
       child: SizedBox.shrink(
         child: Card(
           margin: EdgeInsets.zero,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16),
-            child: ListView(
+            child: Material(
+              color: Colors.transparent,
+              child: ListView(
                 primary: false,
                 shrinkWrap: true,
                 padding: EdgeInsets.symmetric(vertical: widget.verticalPadding),
                 children: widget.children
-                    .map((e) => _GrowingWidget(
-                          child: e,
-                          onHeightChange: (height) {
-                            setState(() {
-                              _heights[ValueKey(e)] = height;
-                            });
-                          },
-                        ))
-                    .toList()),
+                    .map(
+                      (e) => _GrowingWidget(
+                        child: e,
+                        onHeightChange: (height) {
+                          setState(() {
+                            _heights[ValueKey(e)] = height;
+                          });
+                        },
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
           ),
         ),
       ),
