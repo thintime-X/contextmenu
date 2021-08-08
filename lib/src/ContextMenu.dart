@@ -23,13 +23,13 @@ class ContextMenu extends StatefulWidget {
   /// The width for the [ContextMenu]. 320 by default according to Material Design specs.
   final double width;
 
-  const ContextMenu(
-      {Key key,
-      this.position,
-      this.children,
-      this.verticalPadding = 8,
-      this.width = 320})
-      : super(key: key);
+  const ContextMenu({
+    Key? key,
+    required this.position,
+    required this.children,
+    this.verticalPadding = 8,
+    this.width = 320,
+  }) : super(key: key);
 
   @override
   _ContextMenuState createState() => _ContextMenuState();
@@ -111,13 +111,12 @@ class _ContextMenuState extends State<ContextMenu> {
 
 const _kShortDuration = Duration(milliseconds: 75);
 
-typedef _OnHeightChangeCallback(double height);
-
 class _GrowingWidget extends StatefulWidget {
   final Widget child;
-  final _OnHeightChangeCallback onHeightChange;
+  final ValueChanged<double> onHeightChange;
 
-  const _GrowingWidget({Key key, this.child, this.onHeightChange})
+  const _GrowingWidget(
+      {Key? key, required this.child, required this.onHeightChange})
       : super(key: key);
 
   @override
@@ -137,7 +136,7 @@ class __GrowingWidgetState extends State<_GrowingWidget> with AfterLayoutMixin {
 
   @override
   void afterFirstLayout(BuildContext context) {
-    final newHeight = _key.currentContext.size.height;
-    widget.onHeightChange(newHeight);
+    final newHeight = _key.currentContext!.size!.height;
+    widget.onHeightChange.call(newHeight);
   }
 }

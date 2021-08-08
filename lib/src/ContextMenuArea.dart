@@ -4,12 +4,18 @@ import 'package:flutter/material.dart';
 import 'ContextMenu.dart';
 
 /// Show a [ContextMenu] on the given [BuildContext]. For other parameters, see [ContextMenu].
-void showContextMenu(Offset offset, BuildContext context, List<Widget> children,
-    verticalPadding, width) {
+void showContextMenu(
+  Offset offset,
+  BuildContext context,
+  List<Widget> children,
+  verticalPadding,
+  width,
+) {
   showModal(
     context: context,
-    configuration:
-        FadeScaleTransitionConfiguration(barrierColor: Colors.transparent),
+    configuration: FadeScaleTransitionConfiguration(
+      barrierColor: Colors.transparent,
+    ),
     builder: (context) => ContextMenu(
       position: offset,
       children: children,
@@ -40,9 +46,9 @@ class ContextMenuArea extends StatelessWidget {
   final double width;
 
   const ContextMenuArea({
-    Key key,
-    this.child,
-    this.items,
+    Key? key,
+    required this.child,
+    required this.items,
     this.verticalPadding = 8,
     this.width = 320,
   }) : super(key: key);

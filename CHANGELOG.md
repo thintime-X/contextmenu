@@ -1,8 +1,13 @@
-## 1.1.0
+## 2.0.0
 
 * Fixed rendering issues in the corners
 * Added screen recording
 * Improved code style
+* Migrated to null safety
+
+## 1.1.0
+
+* Mistake in evolution
 
 ## 1.0.1
 

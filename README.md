@@ -14,6 +14,7 @@ It works both on touch devices and on desktop devices.
 
 * modern, emphasizing animation according to material design guidelines
 * handles screen edges and oversize
+* very efficient code (< 250 lines)
 
 ## Getting Started
 
