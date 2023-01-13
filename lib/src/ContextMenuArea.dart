@@ -4,13 +4,16 @@ import 'package:flutter/material.dart';
 import 'ContextMenu.dart';
 
 /// Show a [ContextMenu] on the given [BuildContext]. For other parameters, see [ContextMenu].
-void showContextMenu(
-  Offset offset,
-  BuildContext context,
-  List<Widget> children,
-  verticalPadding,
-  width,
-) {
+void showContextMenu({
+  required Offset offset,
+  required BuildContext context,
+  required List<Widget> children,
+  double verticalPadding = 8,
+  double width = 320,
+  BorderRadius borderRadius = BorderRadius.zero,
+  double? elevation,
+  Color? color,
+}) {
   showModal(
     context: context,
     configuration: FadeScaleTransitionConfiguration(
@@ -21,6 +24,9 @@ void showContextMenu(
       children: children,
       verticalPadding: verticalPadding,
       width: width,
+      borderRadius: borderRadius,
+      elevation: elevation,
+      color: color,
     ),
   );
 }
@@ -45,30 +51,46 @@ class ContextMenuArea extends StatelessWidget {
   /// The width for the [ContextMenu]. 320 by default according to Material Design specs.
   final double width;
 
+  /// The radii for each corner.
+  final BorderRadius borderRadius;
+
+  final double? elevation;
+
+  final Color? color;
+
   const ContextMenuArea({
     Key? key,
     required this.child,
     required this.items,
     this.verticalPadding = 8,
     this.width = 320,
+    this.borderRadius = BorderRadius.zero,
+    this.elevation = 0,
+    this.color,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onSecondaryTapDown: (details) => showContextMenu(
-        details.globalPosition,
-        context,
-        items,
-        verticalPadding,
-        width,
+        offset: details.globalPosition,
+        context: context,
+        children: items,
+        verticalPadding: verticalPadding,
+        width: width,
+        borderRadius: borderRadius,
+        elevation: elevation,
+        color: color,
       ),
       onLongPressStart: (details) => showContextMenu(
-        details.globalPosition,
-        context,
-        items,
-        verticalPadding,
-        width,
+        offset: details.globalPosition,
+        context: context,
+        children: items,
+        verticalPadding: verticalPadding,
+        width: width,
+        borderRadius: borderRadius,
+        elevation: elevation,
+        color: color,
       ),
       child: child,
     );

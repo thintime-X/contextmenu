@@ -1,5 +1,4 @@
 import 'package:after_layout/after_layout.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 const double _kMinTileHeight = 24;
@@ -23,12 +22,22 @@ class ContextMenu extends StatefulWidget {
   /// The width for the [ContextMenu]. 320 by default according to Material Design specs.
   final double width;
 
+  /// The radii for each corner.
+  final BorderRadius borderRadius;
+
+  final double? elevation;
+
+  final Color? color;
+
   const ContextMenu({
     Key? key,
     required this.position,
     required this.children,
     this.verticalPadding = 8,
     this.width = 320,
+    this.borderRadius = BorderRadius.zero,
+    this.elevation = 0,
+    this.color,
   }) : super(key: key);
 
   @override
@@ -76,12 +85,14 @@ class _ContextMenuState extends State<ContextMenu> {
       duration: _kShortDuration,
       child: SizedBox.shrink(
         child: Card(
+          color: widget.color,
           margin: EdgeInsets.zero,
+          elevation: widget.elevation,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: widget.borderRadius,
           ),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: widget.borderRadius,
             child: Material(
               color: Colors.transparent,
               child: ListView(
@@ -98,8 +109,7 @@ class _ContextMenuState extends State<ContextMenu> {
                           });
                         },
                       ),
-                    )
-                    .toList(),
+                    ).toList(),
               ),
             ),
           ),
