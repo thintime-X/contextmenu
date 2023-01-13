@@ -1,6 +1,8 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 
+import 'context_menu_builder.dart';
+
 const double _kMinTileHeight = 24;
 
 /// The actual [ContextMenu] to be displayed
@@ -14,7 +16,7 @@ class ContextMenu extends StatefulWidget {
   final Offset position;
 
   /// The items to be displayed. [ListTile] is very useful in most cases.
-  final List<Widget> children;
+  final ContextMenuItemBuilder itemBuilder;
 
   /// The padding value at the top an bottom between the edge of the [ContextMenu] and the first / last item
   final double verticalPadding;
@@ -32,7 +34,7 @@ class ContextMenu extends StatefulWidget {
   const ContextMenu({
     Key? key,
     required this.position,
-    required this.children,
+    required this.itemBuilder,
     this.verticalPadding = 8,
     this.width = 320,
     this.borderRadius = BorderRadius.zero,
@@ -49,13 +51,14 @@ class _ContextMenuState extends State<ContextMenu> {
 
   @override
   Widget build(BuildContext context) {
+    final children = widget.itemBuilder(context);
     double height = 2 * widget.verticalPadding;
 
     _heights.values.forEach((element) {
       height += element;
     });
 
-    final heightsNotAvailable = widget.children.length - _heights.length;
+    final heightsNotAvailable = children.length - _heights.length;
     height += heightsNotAvailable * _kMinTileHeight;
 
     if (height > MediaQuery.of(context).size.height)
@@ -99,8 +102,7 @@ class _ContextMenuState extends State<ContextMenu> {
                 primary: false,
                 shrinkWrap: true,
                 padding: EdgeInsets.symmetric(vertical: widget.verticalPadding),
-                children: widget.children
-                    .map(
+                children: children.map(
                       (e) => _GrowingWidget(
                         child: e,
                         onHeightChange: (height) {

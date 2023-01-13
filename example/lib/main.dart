@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Padding(
         padding: const EdgeInsets.all(32.0),
         child: ContextMenuArea(
-          items: [
+          itemBuilder: (ctx) => [
             ListTile(
               title: Text('Option 1'),
               onTap: () {

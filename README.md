@@ -23,7 +23,7 @@ You can easily display a context menu using the following code:
 ```dart
 Widget build() {
   return ContextMenuArea(
-    items: [
+    itemBuilder: (context) => [
       ListTile(
         title: Text('Option 1'),
         onTap: () {
@@ -52,7 +52,15 @@ Widget build() {
   return GestureDetector(
       onSecondaryTapDown: (details) =>
           showContextMenu(
-              details.globalPosition, context, items, verticalPadding, width),
+            offset: details.globalPosition,
+            context: context,
+            borderRadius: BorderRadius.circular(5.w),
+            itemBuilder: (ctx) => [
+              Container(
+                height: 100,
+              ),
+            ],
+          ),
       child: Text('Tap!'));
 }
 ```

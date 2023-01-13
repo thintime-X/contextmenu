@@ -1,4 +1,5 @@
 import 'package:animations/animations.dart';
+import 'package:contextmenu/src/context_menu_builder.dart';
 import 'package:flutter/material.dart';
 
 import 'ContextMenu.dart';
@@ -7,7 +8,7 @@ import 'ContextMenu.dart';
 void showContextMenu({
   required Offset offset,
   required BuildContext context,
-  required List<Widget> children,
+  required ContextMenuItemBuilder itemBuilder,
   double verticalPadding = 8,
   double width = 320,
   BorderRadius borderRadius = BorderRadius.zero,
@@ -21,7 +22,7 @@ void showContextMenu({
     ),
     builder: (context) => ContextMenu(
       position: offset,
-      children: children,
+      itemBuilder: itemBuilder,
       verticalPadding: verticalPadding,
       width: width,
       borderRadius: borderRadius,
@@ -43,7 +44,7 @@ class ContextMenuArea extends StatelessWidget {
   /// A [List] of items to be displayed in an opened [ContextMenu]
   ///
   /// Usually, a [ListTile] might be the way to go.
-  final List<Widget> items;
+  final ContextMenuItemBuilder itemBuilder;
 
   /// The padding value at the top an bottom between the edge of the [ContextMenu] and the first / last item
   final double verticalPadding;
@@ -61,7 +62,7 @@ class ContextMenuArea extends StatelessWidget {
   const ContextMenuArea({
     Key? key,
     required this.child,
-    required this.items,
+    required this.itemBuilder,
     this.verticalPadding = 8,
     this.width = 320,
     this.borderRadius = BorderRadius.zero,
@@ -75,7 +76,7 @@ class ContextMenuArea extends StatelessWidget {
       onSecondaryTapDown: (details) => showContextMenu(
         offset: details.globalPosition,
         context: context,
-        children: items,
+        itemBuilder: itemBuilder,
         verticalPadding: verticalPadding,
         width: width,
         borderRadius: borderRadius,
@@ -85,7 +86,7 @@ class ContextMenuArea extends StatelessWidget {
       onLongPressStart: (details) => showContextMenu(
         offset: details.globalPosition,
         context: context,
-        children: items,
+        itemBuilder: itemBuilder,
         verticalPadding: verticalPadding,
         width: width,
         borderRadius: borderRadius,
